@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2018_12_13_212943) do
     t.integer "user_id"
     t.integer "home_id"
     t.string "category"
+    t.string "description"
+    t.boolean "done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -4,7 +4,8 @@ class CreateDuties < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :home_id
       t.string :category
-
+      t.string :description
+      t.boolean :done
       t.timestamps
     end
   end
