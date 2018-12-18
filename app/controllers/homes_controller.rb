@@ -16,7 +16,7 @@ class HomesController < ApplicationController
   # POST /homes
   def create
     @home = Home.new(home_params)
-
+    byebug
     if @home.save
       render json: @home, status: :created, location: @home
     else
