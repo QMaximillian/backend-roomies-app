@@ -46,6 +46,6 @@ class HomesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def home_params
-      params.require(:home).permit(:address)
+      params.require(:home).permit(:house_number, :house_address, :city, :state, :zip_code)
     end
 end
