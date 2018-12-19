@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_17_043238) do
+ActiveRecord::Schema.define(version: 2018_12_19_191531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2018_12_17_043238) do
   end
 
   create_table "homes", force: :cascade do |t|
-    t.string "house_number"
-    t.string "house_address"
+    t.string "home_number"
+    t.string "home_address"
     t.string "city"
     t.string "state"
     t.integer "zip_code"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 2018_12_17_043238) do
   create_table "roomates", force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_homes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "home_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
