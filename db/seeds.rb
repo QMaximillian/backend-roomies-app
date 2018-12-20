@@ -8,6 +8,6 @@
 
 Home.create(home_address: '111 Smith Street')
 
-User.create(name: "Quinn Lashinsky", email: 'quinnlashinsky@gmail.com', password: "1234", age: 22)
+User.create(first_name: "Quinn", last_name: "Lashinsky", email: 'quinnlashinsky@gmail.com', password: "1234", age: 22)
 
-UserHome.create(home_id: 1, user_id: 1)
+UserHome.create(home_id: 1, email: 'quinnlashinsky@gmail.com')
