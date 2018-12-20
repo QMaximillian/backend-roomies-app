@@ -12,20 +12,20 @@ class UsersController < ApplicationController
   def show
 
     @user = User.find(params[:id])
-    render json: {user: @user.format}
+    render json: {user: @user}
   end
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.create(user_params)
 
 
 
-    if @user.save
-      @user.checkUserHouseInvitations
-      render json: @user, status: :created, location: @user
+    if @user.valid?
+
+      render json: @user, status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: {message: "User not created"}, status: :unprocessable_entity
     end
   end
 

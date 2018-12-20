@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_secure_password
   has_many :user_homes
   has_many :users, through: :user_homes
   has_many :duties
@@ -13,4 +14,6 @@ class User < ApplicationRecord
   def format
     {homes: self.homes, duties: self.duties}
   end
+
+  
 end
