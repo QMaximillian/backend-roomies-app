@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :homes
   resources :users
   post '/login', to: 'auth#login'
+  get '/reauth', to: 'auth#reauth'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

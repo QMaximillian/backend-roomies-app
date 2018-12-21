@@ -10,6 +10,16 @@ class AuthController < ApplicationController
     end
   end
 
+  def reauth
+    token = request.headers['Authorization']
+    @user = User.find(token)
+    if @user
+      render json: @user, status: :accepted
+    else
+      render json: {message: 'Invalid Credentials. Please login again'}, status: :unauthorized
+    end
+  end
+
   private
 
   def auth_params
