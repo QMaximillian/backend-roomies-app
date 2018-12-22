@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:create]
 
   # GET /users
   def index
@@ -22,8 +23,8 @@ class UsersController < ApplicationController
 
 
     if @user.valid?
-
-      render json: @user, status: :created
+      token = encode_token({id: @user.id})
+      render json: {user: {email: @user.email, id: @user.id, jwt: token}}, status: :created
     else
       render json: {message: "User not created"}, status: :unprocessable_entity
     end

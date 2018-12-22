@@ -1,6 +1,7 @@
 class UserHomesController < ApplicationController
   before_action :set_user_homes, only: [:show, :update, :destroy]
 
+
   # GET /user_homes
   def index
     @user_homes = UserHome.all
