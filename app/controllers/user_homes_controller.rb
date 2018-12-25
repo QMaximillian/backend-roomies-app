@@ -41,7 +41,8 @@ class UserHomesController < ApplicationController
 
   private
     # Use callbac
-    ks to share common setup or constraints between actions.
+    # ks to share common setup or constraints between actions.
+    
     def set_user_homes
       @user_homes = UserHome.find(params[:id])
     end

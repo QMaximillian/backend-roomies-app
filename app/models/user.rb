@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :user_homes
   has_many :users, through: :user_homes
-  has_many :duties
+  # has_many :duties
 
 
   def checkUserHouseInvitations
@@ -15,5 +15,5 @@ class User < ApplicationRecord
     {homes: self.homes, duties: self.duties}
   end
 
-  
+
 end
