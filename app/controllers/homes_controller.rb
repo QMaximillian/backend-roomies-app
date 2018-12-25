@@ -17,6 +17,8 @@ class HomesController < ApplicationController
   def create
     @home = Home.new(home_params)
 
+    @home.random_generator
+
     if @home && @home.save
       render json: @home, status: :created
     else
@@ -46,6 +48,6 @@ class HomesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def home_params
-      params.require(:home).permit(:home_number, :home_address, :city, :state, :zip_code)
+      params.require(:home).permit(:home_number, :home_address, :city, :state, :zip_code, :home_code)
     end
 end

@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_191531) do
     t.string "city"
     t.string "state"
     t.integer "zip_code"
+    t.string "home_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_191531) do
     t.string "email"
     t.string "password_digest"
     t.integer "age"
+    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

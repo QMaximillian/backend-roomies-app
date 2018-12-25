@@ -6,6 +6,7 @@ class CreateHomes < ActiveRecord::Migration[5.2]
       t.string :city
       t.string :state
       t.integer :zip_code
+      t.string :home_code
 
       t.timestamps
     end
