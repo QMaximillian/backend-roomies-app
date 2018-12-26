@@ -16,12 +16,13 @@ class InviteEmailsController < ApplicationController
   # POST /invite_emails
   def create
     byebug
-    # @invite_email = InviteEmail.new(invite_email_params)
-    # if @invite_email.save
-    #   HouseJoinMailer.join_house(@invite_email)
-    # else
-    #   render json: @invite_email.errors, status: :unprocessable_entity
-    # end
+    @invite_email = InviteEmail.new(invite_email_params)
+    if @invite_email.save
+      HouseJoinMailer.join_house(@invite_email).deliver_now
+      render json: {message: 'success'}
+    else
+      render json: @invite_email.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /invite_emails/1
@@ -46,6 +47,6 @@ class InviteEmailsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def invite_email_params
-      params.require(:invite_email).permit(:house_code, :first_name, :last_name, :email, :sender_id)
+      params.require(:invite_email).permit(:home_code, :first_name, :last_name, :email, :sender_id)
     end
 end
