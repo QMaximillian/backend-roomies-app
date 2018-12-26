@@ -29,6 +29,7 @@ class HomesController < ApplicationController
   # PATCH/PUT /homes/1
   def update
     if @home.update(home_params)
+
       render json: @home
     else
       render json: @home.errors, status: :unprocessable_entity

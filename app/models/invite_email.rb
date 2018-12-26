@@ -1,0 +1,2 @@
+class InviteEmail < ApplicationRecord
+end
