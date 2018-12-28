@@ -11,17 +11,18 @@ class UserHomesController < ApplicationController
 
   # GET /user_homes/1
   def show
-    render json: {user_homes: @user_homes.format}
+    render json: {user_homes: @user_home.format}
   end
 
   # POST /user_homes
   def create
-    @user_homes = UserHome.new(user_homes_params)
+    byebug
+    @user_home = UserHome.new(user_home_params)
 
-    if @user_homes.save
-      render json: @user_homes, status: :created, location: @user_homes
+    if @user_home.save
+      render json: @user_home, status: :created
     else
-      render json: @user_homes.errors, status: :unprocessable_entity
+      render json: @user_home.errors, status: :unprocessable_entity
     end
   end
 
@@ -40,15 +41,14 @@ class UserHomesController < ApplicationController
   end
 
   private
-    # Use callbac
-    # ks to share common setup or constraints between actions.
-    
+    # Use callbacks to share common setup or constraints between actions.
+
     def set_user_homes
       @user_homes = UserHome.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
-    def user_homes_params
-      params.require(:user_homes).permit(:user_id, :home_id)
+    def user_home_params
+      params.require(:user_home).permit(:user_id, :home_id)
     end
 end

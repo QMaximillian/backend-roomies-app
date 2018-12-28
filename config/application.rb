@@ -24,8 +24,9 @@ module BackendRoomiesApp
 
     config.action_dispatch.default_headers = {
     'Access-Control-Allow-Origin' => '*'
-
   }
+
+
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

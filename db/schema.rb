@@ -10,58 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_041432) do
+ActiveRecord::Schema.define(version: 2018_12_28_043524) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "duties", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "home_id"
-    t.string "category"
-    t.string "description"
-    t.boolean "done"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "homes", force: :cascade do |t|
+  create_table "homes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "home_number"
     t.string "home_address"
     t.string "city"
     t.string "state"
     t.integer "zip_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invite_emails", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "home_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "invite_emails", force: :cascade do |t|
-     t.string "home_code"
-     t.string "first_name"
-     t.string "last_name"
-     t.string "email"
-     t.string "sender_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "roomates", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_homes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "home_id"
+    t.string "first_name"
+    t.string "last_name"
     t.string "email"
+    t.string "sender_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "user_homes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "home_id"
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["home_id"], name: "index_user_homes_on_home_id"
+    t.index ["user_id"], name: "index_user_homes_on_user_id"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"

@@ -1,6 +1,6 @@
 class CreateInviteEmails < ActiveRecord::Migration[5.2]
   def change
-    create_table :invite_emails do |t|
+    create_table :invite_emails, id: :uuid do |t|
       t.string :home_code
       t.string :first_name
       t.string :last_name
