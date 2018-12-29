@@ -16,7 +16,6 @@ class UserHomesController < ApplicationController
 
   # POST /user_homes
   def create
-    byebug
     @user_home = UserHome.new(user_home_params)
 
     if @user_home.save
