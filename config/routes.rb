@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :tasks
+  resources :user_chores
+  resources :chores
+  resources :rules
   resources :invite_emails
   resources :duties
   resources :homes

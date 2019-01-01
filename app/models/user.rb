@@ -2,17 +2,14 @@ class User < ApplicationRecord
   has_secure_password
   has_many :user_homes
   has_many :homes, through: :user_homes
-  # has_many :duties
 
 
-  def checkUserHouseInvitations
-    byebug
-    x = UserHome.all.find_by(email: self.email)
+  has_many :chores
 
-  end
+
 
   def format
-    {homes: self.homes, duties: self.duties}
+    {user: self, homes: self.homes, user_homes: self.user_homes}
   end
 
 

@@ -1,3 +1,0 @@
-class RoomatesController < ApplicationController
-  
-end

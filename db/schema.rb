@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_043524) do
+ActiveRecord::Schema.define(version: 2019_01_01_032439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "chores", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.boolean "completed"
+    t.string "comments"
+    t.string "category"
+    t.integer "user_id"
+    t.integer "home_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "homes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "home_number"
@@ -22,6 +33,9 @@ ActiveRecord::Schema.define(version: 2018_12_28_043524) do
     t.string "city"
     t.string "state"
     t.integer "zip_code"
+    t.datetime "begin_lease"
+    t.datetime "end_lease"
+    t.integer "roomates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +46,15 @@ ActiveRecord::Schema.define(version: 2018_12_28_043524) do
     t.string "last_name"
     t.string "email"
     t.string "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.string "instructions"
+    t.integer "home_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

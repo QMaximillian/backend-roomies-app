@@ -9,7 +9,8 @@ class HomesController < ApplicationController
 
   # GET /homes/1
   def show
-    render json: @home
+
+    render json: @home.format
   end
 
   # POST /homes
@@ -46,6 +47,6 @@ class HomesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def home_params
-      params.require(:home).permit(:home_number, :home_address, :city, :state, :zip_code)
+      params.require(:home).permit(:home_number, :home_address, :city, :state, :zip_code, :begin_lease, :end_lease, :roomates)
     end
 end
